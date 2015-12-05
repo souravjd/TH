@@ -1,0 +1,75 @@
+.h-head {
+	background-color: #E4E4E4;
+	padding: 20px;
+	display: inline-block;
+	width: 24%;
+}
+.h-head h4 {
+	font-size: 1.5em;
+	color: #202020;
+	text-transform: capitalize;
+	font-weight: 600;
+	margin-bottom: 10px;
+}
+.h-head p {
+	font-size: 0.8725em;
+	color: #6b6b6b;
+	line-height: 1.8em;
+}
+.h-body {
+	background-color: #FFF;
+	padding: 20px;
+	display: inline-block;
+	width: 76%;
+}
+.h-body .cell {
+	display: inline-block;
+	padding-right:20px;
+	width: calc(25% - 20px);
+}
+.h-body .cell h5 {
+	font-size: 1em;
+	color: #5F5F5F;
+	text-transform: capitalize;
+	margin-bottom: 10px;
+}
+.h-body .cell input {
+	width: 100%;
+	color: #666;
+	font-size: 0.8725em;
+	padding: 7px;
+	outline: none;
+	margin: 5px 0;
+	font-family: 'Open Sans', sans-serif;
+	background: #ffffff;
+	border: 1px solid #AAA;
+	box-shadow: inset 0 0 2px rgb(236, 236, 236);
+	-webkit-box-shadow: inset 0 0 2px rgb(236, 236, 236);
+	-moz-box-shadow: inset 0 0 2px rgb(236, 236, 236);
+	-o-box-shadow: inset 0 0 2px rgb(236, 236, 236);
+}
+.h-body .cell input[type="submit"] {
+	background-color: #191919;
+	box-shadow: none;
+	color: #EEE;
+}
+div.space {
+	padding: 10px;
+}
+
+@media only screen and (max-width: 768px) {
+	.h-head {
+		width: calc(100% - 40px);	
+	}
+	.h-body {
+		width: calc(100% - 40px);
+	}
+	.h-body .cell {
+		width: calc(50% - 20px);
+	}
+}
+@media only screen and (max-width: 640px) {
+	.h-body .cell {
+		width: 100%;
+	}
+}
