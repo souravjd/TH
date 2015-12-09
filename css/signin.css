@@ -1,0 +1,72 @@
+.sign-box {
+	width: 50%;
+	margin: 0px auto;
+	background-color: #FFF;
+	box-shadow: 0px 0px 4px #000;
+}
+.sign-box .head {
+	text-transform: uppercase;
+	padding: 10px;
+	background-color: #E4E4E4;
+	text-align: center;
+	font-weight: bold;
+	font-size: 1.5em;
+}
+.sign-box .body {
+	padding: 20px;
+}
+.label {
+	display: inline-block;
+	width: 25%;
+}
+.label h5 {
+	font-size: 1em;
+	color: #5F5F5F;
+	text-transform: capitalize;
+	margin-bottom: 10px;
+}
+.lcontent {
+	display: inline-block;
+	width: 75%;
+	clear: both;
+	margin: 0px;
+}
+.lcontent input {
+	width: 100%;
+	color: #666;
+	font-size: 0.8725em;
+	padding: 7px;
+	outline: medium none;
+	margin: 5px 0px;
+	font-family: "Open Sans",sans-serif;
+	background: #FFF none repeat scroll 0% 0%;
+	border: 1px solid #AAA;
+	box-shadow: 0px 0px 2px #ECECEC inset;
+}
+input[type="submit"] {
+	width: 100% !important;
+	font-size: 0.8725em;
+	padding: 7px;
+	border: 1px solid #000;
+	background-color: #191919;
+	margin: 5px 0px;
+	font-family: "Open Sans",sans-serif;
+	box-shadow: none;
+	color: #EEE;
+	cursor: pointer;
+}
+@media only screen and (max-width: 1024px) {
+	.sign-box {
+		width: 70%;
+	}
+}
+@media only screen and (max-width: 768px) {
+	.sign-box {
+		width: 90%;
+	}
+}
+@media only screen and (max-width: 480px) {
+	.label, .lcontent {
+		width: 100%;
+	}
+}
