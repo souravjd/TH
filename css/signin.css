@@ -1,3 +1,6 @@
+.txt-up {
+	text-transform: uppercase;
+}
 .sign-box {
 	width: 50%;
 	margin: 0px auto;
@@ -5,7 +8,6 @@
 	box-shadow: 0px 0px 4px #000;
 }
 .sign-box .head {
-	text-transform: uppercase;
 	padding: 10px;
 	background-color: #E4E4E4;
 	text-align: center;
@@ -14,6 +16,30 @@
 }
 .sign-box .body {
 	padding: 20px;
+}
+.sign-box .body .text {
+	color: #666;
+	font-size: 0.8em;
+	padding: 10px 0px;
+}
+.sign-box .body .text a {
+	color: #000;
+}
+.sign-box .body .text a:hover {
+	text-decoration: underline;
+}
+.sign-box .foot {
+	padding: 20px;
+	background-color: #E4E4E4;
+	font-size: 0.8em;
+	color: #666;
+}
+.sign-box .foot .right {
+	float: right;
+}
+.sign-box .foot a {
+	color: #191919;
+	font-weight: bold;
 }
 .label {
 	display: inline-block;
@@ -49,11 +75,15 @@ input[type="submit"] {
 	padding: 7px;
 	border: 1px solid #000;
 	background-color: #191919;
+	text-transform: uppercase;
 	margin: 5px 0px;
 	font-family: "Open Sans",sans-serif;
 	box-shadow: none;
 	color: #EEE;
 	cursor: pointer;
+}
+input[type="checkbox"] {
+	display: inline-block !important;
 }
 @media only screen and (max-width: 1024px) {
 	.sign-box {

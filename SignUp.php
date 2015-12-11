@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>Ticket Halt - Sign In</title>
+		<title>Ticket Halt - Sign Up</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 		<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
@@ -57,8 +57,8 @@
 						<ul class="menu" style="float:right;">
 							| <li><a href="index.php">Home</a></li> |
 							<li><a href="cancel.html">Print / Cancel Ticket</a></li> | |
-							<li class="active"><a href="signin.php">Sign In</a></li> |
-							<li><a href="signup.html">Sign Up</a></li> |
+							<li><a href="signin.php">Sign In</a></li> |
+							<li class="active"><a href="signup.html">Sign Up</a></li> |
 							<div class="clear"></div>
 						</ul>
 					</div>
@@ -68,8 +68,8 @@
 							<ul>
 								<li><a href="index.php">Home</a></li> 
 								<li><a href="cencel.html">Cancel Ticket</a></li> 
-								<li class="active"><a href="signin.php">Sign In</a></li> 
-								<li><a href="signup.html">Sign Up</a></li>
+								<li><a href="signin.php">Sign In</a></li> 
+								<li class="active"><a href="signup.html">Sign Up</a></li>
 							</ul>
 							<a href="#" id="pull">Menu</a>
 						</nav>
@@ -83,9 +83,9 @@
 			<!-- START MAIN CONTENT -->
 			<div class="wrap" style="padding:185px 0 40px 0">
 				<div class="sign-box">
-					<div class="head">Sign In</div>
+					<div class="head">Sign Up</div>
 					<div class="body">
-						<form method="post" action="signin.php">
+						<form method="post" action="signup.php">
 							<div class="label">
 								<h5>Email :</h5>
 							</div><div class="lcontent">
@@ -96,12 +96,13 @@
 							</div><div class="lcontent">
 								<input type="password" name="pass" placeholder="Enter your Password">
 							</div>
+							<div class="text">By signing up, you agree to our <a href="terms.php">terms and conditions</a>.</div>
 							<input type="submit" name="sub" value="Sign In">
 						</form>
 					</div>
 					<div class="foot">
-						<div><a href="forgot.php">Forgot Password?</a>
-							<div class="right txt-up"><a href="signup.php">Sign Up</a></div>
+						<div>Already have an account?
+							<div class="right txt-up"><a href="signin.php">Sign In</a></div>
 						</div>
 					</div>
 				</div>
