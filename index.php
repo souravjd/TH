@@ -50,7 +50,7 @@
 		<div class="wrap">
 			<div class="header">
 				<div class="logo">
-					<a href="index.html"><img src="images/logo.png" alt=""></a>
+					<a href="index.php"><img src="images/logo.png" alt=""></a>
 				</div>
 				<!-- START MENU -->
 				<div class="h_right">
@@ -58,7 +58,7 @@
 						| <li class="active"><a href="index.php">Home</a></li> |
 						<li><a href="cancel.html">Print / Cancel Ticket</a></li> | |
 						<li><a href="signin.php">Sign In</a></li> |
-						<li><a href="signup.html">Sign Up</a></li> |
+						<li><a href="signup.php">Sign Up</a></li> |
 						<div class="clear"></div>
 					</ul>
 				</div>
@@ -69,7 +69,7 @@
 							<li class="active"><a href="index.php">Home</a></li> 
 							<li><a href="cencel.html">Cancel Ticket</a></li> 
 							<li><a href="signin.php">Sign In</a></li> 
-							<li><a href="signup.html">Sign Up</a></li>
+							<li><a href="signup.php">Sign Up</a></li>
 						</ul>
 						<a href="#" id="pull">Menu</a>
 					</nav>
@@ -128,33 +128,6 @@
 			</div>
 		</div>
 		<!-- /END MAIN CONTENT -->	
-		<!-- START FOOTER -->
-		<div class="footer_bg">
-			<div class="wrap">
-				<div class="footer">
-					<div class="copy">
-						<p class="link"><span>© All rights reserved | Designed by <a href="#"> {{OUR COMPANY}}</a></span></p>
-					</div>
-					<div class="f_nav">
-						<ul>
-							<li><a href="index.html">Home</a></li>
-							<li><a href="rooms.html">About Us</a></li>
-							<li><a href="reservation.html">Privacy Policy</a></li>
-							<li><a href="contact.html">Tearm of Use</a></li>
-						</ul>
-					</div>
-					<div class="soc_icons">
-						<ul>
-							<li><a class="icon1" href="#"></a></li>
-							<li><a class="icon2" href="#"></a></li>
-							<li><a class="icon3" href="#"></a></li>
-							<div class="clear"></div>
-						</ul>	
-					</div>
-					<div class="clear"></div>
-				</div>
-			</div>
-		</div>
-		<!-- /END FOOTER -->
+		<?php include '_footer.php'; ?>
 	</body>
 </html>
