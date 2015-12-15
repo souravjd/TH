@@ -1,4 +1,16 @@
 <!DOCTYPE HTML>
+<?php
+
+	@$error = $_GET['error'];
+
+	if (isset($_POST['sub'])) {
+		if ($_POST['email'] != '' && $_POST['pass'] != '') {
+			
+		} else {
+			header("location: signin.php?error=empty");
+		}
+	} else {
+?>
 <html>
 	<head>
 		<title>Ticket Halt - Sign In</title>
@@ -85,11 +97,24 @@
 				<div class="sign-box">
 					<div class="head">Sign In</div>
 					<div class="body">
+						<?php
+
+							if ($error == 'empty') {
+						?>
+						<div class="error">Both fields are required.</div>
+						<?php
+							} elseif ($error == 'wrong') {
+						?>
+						<div class="error">Wrong email or password.</div>
+						<?php
+							}
+
+						?>
 						<form method="post" action="signin.php">
 							<div class="label">
 								<h5>Email :</h5>
 							</div><div class="lcontent">
-								<input type="text" name="email" placeholder="Enter your Email Id">
+								<input type="email" name="email" placeholder="Enter your Email Id">
 							</div>
 							<div class="label">
 								<h5>Password :</h5>
@@ -111,3 +136,6 @@
 		<?php include '_footer.php'; ?>
 	</body>
 </html>
+<?php
+	}
+?>

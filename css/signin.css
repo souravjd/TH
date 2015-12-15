@@ -17,6 +17,22 @@
 .sign-box .body {
 	padding: 20px;
 }
+.sign-box .error {
+	background-color: #F33;
+	border: 1px solid #A00;
+	padding: 5px 20px;
+	color: #FEE;
+	font-size: 0.8em;
+	margin-bottom: 10px;
+}
+.sign-box .success {
+	background-color: #3F3;
+	border: 1px solid #0A0;
+	padding: 5px 20px;
+	color: #EFE;
+	font-size: 0.8em;
+	margin-bottom: 10px;
+}
 .sign-box .body .text {
 	color: #666;
 	font-size: 0.8em;

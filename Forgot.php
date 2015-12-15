@@ -4,16 +4,16 @@
 	@$error = $_GET['error'];
 
 	if (isset($_POST['sub'])) {
-		if ($_POST['email'] != '' && $_POST['pass'] != '') {
+		if ($_POST['email'] != '') {
 			
 		} else {
-			header("location: signup.php?error=empty");
+			header("location: forgot.php?error=empty");
 		}
 	} else {
 ?>
 <html>
 	<head>
-		<title>Ticket Halt - Sign Up</title>
+		<title>Ticket Halt - Forgot Password</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 		<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
@@ -70,7 +70,7 @@
 							| <li><a href="index.php">Home</a></li> |
 							<li><a href="cancel.html">Print / Cancel Ticket</a></li> | |
 							<li><a href="signin.php">Sign In</a></li> |
-							<li class="active"><a href="signup.php">Sign Up</a></li> |
+							<li><a href="signup.php">Sign Up</a></li> |
 							<div class="clear"></div>
 						</ul>
 					</div>
@@ -81,7 +81,7 @@
 								<li><a href="index.php">Home</a></li> 
 								<li><a href="cencel.html">Cancel Ticket</a></li> 
 								<li><a href="signin.php">Sign In</a></li> 
-								<li class="active"><a href="signup.php">Sign Up</a></li>
+								<li><a href="signup.php">Sign Up</a></li>
 							</ul>
 							<a href="#" id="pull">Menu</a>
 						</nav>
@@ -95,31 +95,37 @@
 			<!-- START MAIN CONTENT -->
 			<div class="wrap" style="padding:185px 0 40px 0">
 				<div class="sign-box">
-					<div class="head">Sign Up</div>
+					<div class="head">Forgot Password</div>
 					<div class="body">
-						<form method="post" action="signup.php">
+						<?php
+
+							if ($error == 'empty') {
+						?>
+						<div class="error">Field can't be empty.</div>
+						<?php
+							} elseif ($error == 'wrong') {
+						?>
+						<div class="error">No account exits with this Email.</div>
+						<?php
+							} elseif ($error == 'none') {
+						?>
+						<div class="success">Your recovey link is sent to you given email.</div>
+						<?php
+							}
+
+						?>
+						<form method="post" action="forgot.php">
 							<div class="label">
 								<h5>Email :</h5>
 							</div><div class="lcontent">
 								<input type="email" name="email" placeholder="Enter your Email Id">
 							</div>
-							<div class="label">
-								<h5>Password :</h5>
-							</div><div class="lcontent">
-								<input type="password" name="pass" placeholder="Enter your Password">
-							</div>
-							<div class="label">
-								<h5>Confirm Password :</h5>
-							</div><div class="lcontent">
-								<input type="password" name="rpass" placeholder="Confirm your Password">
-							</div>
-							<div class="text">By signing up, you agree to our <a href="terms.php">terms and conditions</a>.</div>
-							<input type="submit" name="sub" value="Sign Up">
+							<input type="submit" name="sub" value="Recover Password">
 						</form>
 					</div>
 					<div class="foot">
-						<div>Already have an account?
-							<div class="right txt-up"><a href="signin.php">Sign In</a></div>
+						<div class="txt-up"><a href="sign.php">Sign In</a>
+							<div class="right txt-up"><a href="signup.php">Sign Up</a></div>
 						</div>
 					</div>
 				</div>
