@@ -4,24 +4,29 @@
 		<title>Ticket Halt</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-		<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
-		<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
-		<script src="js/jquery.min.js"></script>
-		<link rel="stylesheet" href="css/jquery-ui.css" />
-		<link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
-		<!--
-		<script src="js/jquery-ui.js"></script>
-			<script>
-				  $(function() {
-				    $( "#datepicker" ).datepicker();
-				  });
-			</script>
-		-->
-		<link rel="stylesheet" href="css/main.css">
-		<link type="text/css" rel="stylesheet" href="css/JFGrid.css" />
-		<link type="text/css" rel="stylesheet" href="css/JFFormStyle-1.css" />
+
+		<link -href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+
+		<link rel="stylesheet" type="text/css" href="css/datepicker.css">
+		<link rel="stylesheet" type="text/css" href="css/JFGrid.css" />
+		<link rel="stylesheet" type="text/css" href="css/JFFormStyle-1.css" />
+		<link rel="stylesheet" type="text/css" href="css/main.css">
+		<link rel="stylesheet" type="text/css" href="css/style.css" media="all" />
+		<link rel="stylesheet" type="text/css" href="FontAwesome/css/font-awesome.css">
+
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/jquery-ui.min.js"></script>
 		<script type="text/javascript" src="js/JFCore.js"></script>
 		<script type="text/javascript" src="js/JFForms.js"></script>
+
+		<!-- START DATEPICKER SCRIPT -->
+		<script>
+			$(function() {
+				$( "#datepicker" ).datepicker();
+			});
+		</script>
+		<!-- /END DATEPICKER SCRIPT -->
+
 		<!-- START NAV SCRIPT -->
 		<script>
 				$(function() {
@@ -97,7 +102,7 @@
 								<input type="text" placeholder="Select City">
 							</div><div class="cell book_date">
 								<h5>Date :</h5>
-								<input type="text" id="datepicker" class="date hasDatepicker" placeholder="DD/MM/YYYY">
+								<input type="text" id="datepicker" placeholder="DD/MM/YYYY">
 							</div><div class="cell">
 								<h5></h5>
 								<input type="submit" value="Search Bus">
