@@ -1,13 +1,28 @@
 <!DOCTYPE HTML>
 <?php
 
+	include '_config.php';
+	include '_queries.php';
+
+	$con = connect();
+
 	@$error = $_GET['error'];
 
 	if (isset($_POST['sub'])) {
-		if ($_POST['email'] != '' && $_POST['pass'] != '') {
-			
+		if ($_POST['email'] != '' && $_POST['pass'] != '' && $_POST['rpass']) {
+			if ($_POST['pass'] === $_POST['rpass']) {
+				$res_chkmail = $con->query($sql_users['checkMail']."'".$_POST['email']."'");
+				if ($res_chkmail->num_rows == 0) {
+					$res_signup = $con->query($sql_users['signUp']."('".$_POST['email']."', '".$_POST['pass']."')");
+					header("location: ".$SITE['url']."signin.php?error=signuped");
+				} else {
+					header("location: ".$SITE['url']."signup.php?error=mailexists");
+				}
+			} else {
+				header("location: ".$SITE['url']."signup.php?error=password");
+			}
 		} else {
-			header("location: signup.php?error=empty");
+			header("location: ".$SITE['url']."signup.php?error=empty");
 		}
 	} else {
 ?>
@@ -97,21 +112,38 @@
 				<div class="sign-box">
 					<div class="head">Sign Up</div>
 					<div class="body">
+						<?php
+
+							if ($error == 'empty') {
+						?>
+						<div class="error">All fields are required.</div>
+						<?php
+							} elseif ($error == 'password') {
+						?>
+						<div class="error">Password doesn't match.</div>
+						<?php
+							} elseif ($error == 'mailexists') {
+						?>
+						<div class="error">Email already in use.</div>
+						<?php
+							}
+
+						?>
 						<form method="post" action="signup.php">
 							<div class="label">
 								<h5>Email :</h5>
 							</div><div class="lcontent">
-								<input type="email" name="email" placeholder="Enter your Email Id">
+								<input type="email" required="required" name="email" placeholder="Enter your Email Id">
 							</div>
 							<div class="label">
 								<h5>Password :</h5>
 							</div><div class="lcontent">
-								<input type="password" name="pass" placeholder="Enter your Password">
+								<input type="password" required="required" name="pass" placeholder="Enter your Password">
 							</div>
 							<div class="label">
 								<h5>Confirm Password :</h5>
 							</div><div class="lcontent">
-								<input type="password" name="rpass" placeholder="Confirm your Password">
+								<input type="password" required="required" name="rpass" placeholder="Confirm your Password">
 							</div>
 							<div class="text">By signing up, you agree to our <a href="terms.php">terms and conditions</a>.</div>
 							<input type="submit" name="sub" value="Sign Up">

@@ -107,6 +107,10 @@
 						?>
 						<div class="error">Wrong email or password.</div>
 						<?php
+							} elseif ($error == 'signuped') {
+						?>
+						<div class="success">Your account is ready.</div>
+						<?php
 							}
 
 						?>
