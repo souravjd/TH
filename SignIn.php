@@ -1,13 +1,35 @@
 <!DOCTYPE HTML>
 <?php
 
+	session_start();
+
+	include '_config.php';
+	include '_queries.php';
+
+	$con = connect();
+
 	@$error = $_GET['error'];
+
+	if (isset($_SESSION['halt_user'])) {
+		header("location: ".$SITE['url']);
+	}
 
 	if (isset($_POST['sub'])) {
 		if ($_POST['email'] != '' && $_POST['pass'] != '') {
-			
+			$res_chkmail = $con->query($sql_users['signInCheck'] . "'".$_POST['email']."'");
+			if ($res_chkmail->num_rows == 1) {
+				$row_chkmail = $res_chkmail->fetch_assoc();
+				if ($row_chkmail['user_password'] == $_POST['pass']) {
+					$_SESSION['halt_user'] = md5($row_chkmail['user_mail']);
+					header("location: ".$SITE['url']);
+				} else {
+					header("location: ".$SITE['url']."signin.php?error=wrong");
+				}
+			} else {
+				header("location: ".$SITE['url']."signin.php?error=wrong");
+			}
 		} else {
-			header("location: signin.php?error=empty");
+			header("location: ".$SITE['url']."signin.php?error=empty");
 		}
 	} else {
 ?>
@@ -118,12 +140,12 @@
 							<div class="label">
 								<h5>Email :</h5>
 							</div><div class="lcontent">
-								<input type="email" name="email" placeholder="Enter your Email Id">
+								<input type="email" name="email" required="required" placeholder="Enter your Email Id">
 							</div>
 							<div class="label">
 								<h5>Password :</h5>
 							</div><div class="lcontent">
-								<input type="password" name="pass" placeholder="Enter your Password">
+								<input type="password" name="pass" required="required" placeholder="Enter your Password">
 							</div>
 							<input type="submit" name="sub" value="Sign In">
 						</form>

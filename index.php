@@ -1,6 +1,8 @@
 <!DOCTYPE HTML>
 <?php
 
+	session_start();
+
 	include '_config.php';
 	include '_queries.php';
 
@@ -8,8 +10,11 @@
 
 	$sessionState = 0;
 
-	if (isset($_SESSION['haltuser'])) {
+	if (isset($_SESSION['halt_user'])) {
 		$sessionState = 1;
+
+		$res_chkmail = $con->query($sql_users['sessionFetch'] . "'".$_SESSION['halt_user']."'");
+		$row_chkmail = $res_chkmail->fetch_assoc();
 	}
 
 ?>
@@ -76,8 +81,24 @@
 					<ul class="menu" style="float:right;">
 						| <li class="active"><a href="index.php">Home</a></li> |
 						<li><a href="cancel.html">Print / Cancel Ticket</a></li> | |
+
+						<?php
+							if ($sessionState == 1) {
+						?>
+
+						<li><a href="account.php"><?php echo $row_chkmail['user_mail']; ?></a></li> |
+						<li><a href="signout.php">Sign Out</a></li> |
+
+						<?php
+							} else {
+						?>
+
 						<li><a href="signin.php">Sign In</a></li> |
 						<li><a href="signup.php">Sign Up</a></li> |
+
+						<?php
+							}
+						?>
 						<div class="clear"></div>
 					</ul>
 				</div>
@@ -86,9 +107,26 @@
 				<nav class="clearfix">
 						<ul>
 							<li class="active"><a href="index.php">Home</a></li> 
-							<li><a href="cencel.html">Cancel Ticket</a></li> 
-							<li><a href="signin.php">Sign In</a></li> 
+							<li><a href="cencel.html">Cancel Ticket</a></li>
+
+							<?php
+								if ($sessionState == 1) {
+							?>
+
+							<li><a href="account.php"><?php echo $row_chkmail['user_mail']; ?></a></li>
+							<li><a href="signout.php">Sign Out</a></li>
+
+							<?php
+								} else {
+							?>
+
+							<li><a href="signin.php">Sign In</a></li>
 							<li><a href="signup.php">Sign Up</a></li>
+
+							<?php
+								}
+							?>
+
 						</ul>
 						<a href="#" id="pull">Menu</a>
 					</nav>

@@ -1,12 +1,18 @@
 <!DOCTYPE HTML>
 <?php
 
+	session_start();
+
 	include '_config.php';
 	include '_queries.php';
 
 	$con = connect();
 
 	@$error = $_GET['error'];
+
+	if (isset($_SESSION['halt_user'])) {
+		header("location: ".$SITE['url']);
+	}
 
 	if (isset($_POST['sub'])) {
 		if ($_POST['email'] != '' && $_POST['pass'] != '' && $_POST['rpass']) {
