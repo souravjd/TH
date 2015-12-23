@@ -27,16 +27,12 @@
 		<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
 
 		<link rel="stylesheet" type="text/css" href="css/datepicker.css">
-		<link rel="stylesheet" type="text/css" href="css/JFGrid.css" />
-		<link rel="stylesheet" type="text/css" href="css/JFFormStyle-1.css" />
 		<link rel="stylesheet" type="text/css" href="css/main.css">
 		<link rel="stylesheet" type="text/css" href="css/style.css" media="all" />
 		<link rel="stylesheet" type="text/css" href="FontAwesome/css/font-awesome.css">
 
 		<script type="text/javascript" src="js/jquery.min.js"></script>
 		<script type="text/javascript" src="js/jquery-ui.min.js"></script>
-		<script type="text/javascript" src="js/JFCore.js"></script>
-		<script type="text/javascript" src="js/JFForms.js"></script>
 
 		<!-- START DATEPICKER SCRIPT -->
 		<script>
@@ -86,7 +82,13 @@
 							if ($sessionState == 1) {
 						?>
 
-						<li><a href="account.php"><?php echo $row_chkmail['user_mail']; ?></a></li> |
+						<li><a href="account.php"><?php
+													if ($row_chkmail['user_name'] != '') {
+														echo $row_chkmail['user_name'];
+													} else {
+														echo $row_chkmail['user_mail'];
+													}
+												?></a></li> |
 						<li><a href="signout.php">Sign Out</a></li> |
 
 						<?php
@@ -113,7 +115,13 @@
 								if ($sessionState == 1) {
 							?>
 
-							<li><a href="account.php"><?php echo $row_chkmail['user_mail']; ?></a></li>
+							<li><a href="account.php"><?php
+														if ($row_chkmail['user_name'] != '') {
+															echo $row_chkmail['user_name'];
+														} else {
+															echo $row_chkmail['user_mail'];
+														}
+													?></a></li>
 							<li><a href="signout.php">Sign Out</a></li>
 
 							<?php
