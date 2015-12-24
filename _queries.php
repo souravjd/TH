@@ -9,4 +9,9 @@
 
 	## SESSION QUERIES
 	$sql_users['sessionFetch'] = "SELECT `user_id`, `user_mail`, `user_name`, `user_doj`, `user_state` FROM `users` WHERE MD5(`user_mail`) = ";
+
+	## ACCOUNT QUERIES
+	$sql_users['changeName'] = "UPDATE `users` SET `user_name` = ";
+	$sql_users['mailPasswordCheck'] = "SELECT count(`user_doj`) AS chk FROM `users` WHERE MD5(`user_mail`) = ";
+	$sql_users['changePassword'] = "UPDATE `users` SET `user_password` = ";
 ?>
