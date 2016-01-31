@@ -879,8 +879,8 @@ span.next:hover {
 		float: none;
 	}
 	.row {
-		width: 70% !important;
-	}
+/*		width: 70% !important;
+*/	}
 	.top-nav {
 		display: block;
 		margin: 10px 0;

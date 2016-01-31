@@ -35,14 +35,10 @@
 		<script type="text/javascript" src="js/jquery.min.js"></script>
 		<script type="text/javascript" src="js/jquery-ui.min.js"></script>
 
-		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
-		<link rel="stylesheet" href="css/pe-icon/css/pe-icon-7-stroke.css">
-		<link rel="stylesheet" href="css.pe-icon/css/helper.css">
-
 		<!-- START DATEPICKER SCRIPT -->
 		<script>
 			$(function() {
-				$( "#datepicker" ).datepicker({ minDate: 0});
+				$( "#datepicker" ).datepicker();
 			});
 		</script>
 		<!-- /END DATEPICKER SCRIPT -->
@@ -182,45 +178,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="main_bg" style="padding:40px 0px;">
-			<div class="bg-light">
-				<div class="container">
-					<div class="row">
-						<div class="col-md-3 text-center">
-							<i class="pe-7s-cart pe-lg"></i>
-						</div>
-						<div class="col-md-6 text-center">
-							Ticket Halt is an e-commerce booking portal which not only provides the best services without any hassle but also seeking the quality standards of your journey with economical and pocket friendly prices.
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="bg-dark">
-				<div class="container">
-					<div class="row">
-						<div class="col-md-6 col-md-offset-3 text-center" style="color:#EEE;">
-							No extra amounts have to be paid for such services. Be the part of ticket halt and make your experience worth. Tickethalt.com is introduced for the convenience of people who travel a lot but find difficulties in their travelling part. Time is an important part in one’s life and we take care of that by not letting you stand in long que.
-						</div>
-						<div class="col-md-3 text-center visible-md">
-							<i class="pe-7s-diamond pe-lg" style="color:#EEE;text-align:right;"></i>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="bg-light">
-				<div class="container">
-				<div class="row">
-						<div class="col-md-3 text-center">
-							<i class="pe-7s-user pe-lg"></i>
-						</div>
-						<div class="col-md-6 text-center">
-							We offer reserved seats for the ladies without any hassle.comfort and luxury is what we give preference for the public service. No hassle around with the bus operators. 
-						</div>
-					</div>
-				</div>
-			</div>
-
-<?php /*
+		<div class="main_bg">
 			<div class="wrap">
 				<div class="space"></div>
 				<div class="grids_of_3">
@@ -239,9 +197,6 @@
 					<div class="clear"></div>
 				</div>	
 			</div>
-	*/
-?>
-
 		</div>
 		<!-- /END MAIN CONTENT -->	
 		<?php include '_footer.php'; ?>

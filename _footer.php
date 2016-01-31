@@ -8,7 +8,7 @@
 					<div class="f_nav">
 						<ul>
 							<li><a href="index.php">Home</a></li>
-							<li><a href="about.html">About Us</a></li>
+							<li><a href="aboutus.php">About Us</a></li>
 							<li><a href="privacy.html">Privacy Policy</a></li>
 							<li><a href="terms.html">Terms of Use</a></li>
 						</ul>

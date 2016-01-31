@@ -209,3 +209,10 @@
 	left: .5em;
 	top: .3em;
 }
+.ui-state-disabled span {
+	color: #666 !important;
+	border: 0px !important;
+}
+.ui-state-disabled span:hover {
+	border: 0px !important;
+}

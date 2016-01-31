@@ -2,7 +2,7 @@
 	background-color: #E4E4E4;
 	padding: 20px;
 	display: inline-block;
-	width: 24%;
+	width: 35%;
 }
 .h-head h4 {
 	font-size: 1.5em;
@@ -57,6 +57,32 @@
 }
 div.space {
 	padding: 10px;
+}
+.bg-light {
+	padding: 20px 40px;
+	color: #191919;
+}
+.bg-dark {
+	background-color: #191919;
+	padding: 20px 40px;
+	color: #EBEBEB;
+}
+.tild-block::before, .tild-block::after {
+	display: block;
+	border: 40px solid #191919;
+	content: '';
+}
+.tild-block::after {
+	border-bottom-color: #EBEBEB;
+	border-right-color: #EBEBEB;
+}
+.tild-block::before{
+	border-top-color: #EBEBEB;
+	border-left-color: #EBEBEB;
+}
+.c-box {
+	width: 980px;
+	margin: 0px auto;
 }
 
 /* ACCOUNT PAGE STYLE */
@@ -145,13 +171,27 @@ div.space {
 .text-center {
 	text-align: center;
 }
+.pe-sm, .pe-md, .pe-lg {
+	color: #444;
+}
+.pe-sm {
+	font-size: 32px;
+}
+.pe-md {
+	font-size: 64px;
+}
+.pe-lg {
+	font-size: 128px;
+}
 
 @media only screen and (max-width: 768px) {
 	.h-head {
-		width: calc(100% - 40px);	
+/*		width: calc(100% - 40px);	
+*/		width: 100%;
 	}
 	.h-body {
-		width: calc(100% - 40px);
+/*		width: calc(100% - 40px);	
+*/		width: 100%;
 	}
 	.h-body .cell {
 		width: calc(50% - 20px);
