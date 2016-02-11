@@ -2,6 +2,11 @@
 	background-color: #FFF;
 	padding: 10px 0px 15px;
 }
+.route-head b {
+	font-weight: bold;
+	font-family: arial !important;
+	font-size: 110%;
+}
 .route-head .value {
 	text-transform: uppercase;
 }

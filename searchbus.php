@@ -95,35 +95,6 @@
 				});
 		</script>
 
-		<style>
-.enjoy-css {
-  -webkit-box-sizing: content-box;
-  -moz-box-sizing: content-box;
-  box-sizing: content-box;
-  cursor: pointer;
-  border: none;
-  font: normal 72px/normal "Passero One", Helvetica, sans-serif;
-  color: rgba(255,255,255,1);
-  text-align: center;
-  -o-text-overflow: clip;
-  text-overflow: clip;
-  text-shadow: 0 1px 0 rgb(204,204,204) , 0 2px 0 rgb(201,201,201) , 0 3px 0 rgb(187,187,187) , 0 4px 0 rgb(185,185,185) , 0 5px 0 rgb(170,170,170) , 0 6px 1px rgba(0,0,0,0.0980392) , 0 0 5px rgba(0,0,0,0.0980392) , 0 1px 3px rgba(0,0,0,0.298039) , 0 3px 5px rgba(0,0,0,0.2) , 0 5px 10px rgba(0,0,0,0.247059) , 0 10px 10px rgba(0,0,0,0.2) , 0 20px 20px rgba(0,0,0,0.14902) ;
-  -webkit-transition: all 300ms cubic-bezier(0.42, 0, 0.58, 1);
-  -moz-transition: all 300ms cubic-bezier(0.42, 0, 0.58, 1);
-  -o-transition: all 300ms cubic-bezier(0.42, 0, 0.58, 1);
-  transition: all 300ms cubic-bezier(0.42, 0, 0.58, 1);
-}
-
-.enjoy-css:hover {
-  color: rgba(169,214,169,1);
-  text-shadow: 0 1px 0 rgba(255,255,255,1) , 0 2px 0 rgba(255,255,255,1) , 0 3px 0 rgba(255,255,255,1) , 0 4px 0 rgba(255,255,255,1) , 0 5px 0 rgba(255,255,255,1) , 0 6px 1px rgba(0,0,0,0.0980392) , 0 0 5px rgba(0,0,0,0.0980392) , 0 1px 3px rgba(0,0,0,0.298039) , 0 3px 5px rgba(0,0,0,0.2) , 0 -5px 10px rgba(0,0,0,0.247059) , 0 -7px 10px rgba(0,0,0,0.2) , 0 -15px 20px rgba(0,0,0,0.14902) ;
-  -webkit-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1) 10ms;
-  -moz-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1) 10ms;
-  -o-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1) 10ms;
-  transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1) 10ms;
-}
-		</style>
-
 		<!-- /END NAV SCRIPT -->
 	</head>
 	<body>
@@ -220,78 +191,60 @@
 		<!-- /END ROUTE HEADER -->
 
 		<!-- START MAIN CONTENT -->
+		
 		<div class="main_bg">
 			<div class="wrap">
 				<div class="content-area">
-						<div class="content-box text-center enjoy-css" style="background:#79d19d !important;padding:60px 20px;">
-							Comming Soon
-						</div>
+					<?php
+
+						$from = $_POST['from'];
+						$to = $_POST['to'];
+
+						$from_id = null;
+						$to_id = null;
+
+						$sql_from = "SELECT point_id FROM points WHERE  point_name = '{$from}' AND point_status = 'active'";
+						$res_from = $con->query($sql_from);
+						if ($res_from->num_rows > 0) {
+							$from_id = $res_from->fetch_assoc()['point_id'];
+						}
+
+						$sql_to = "SELECT point_id FROM points WHERE  point_name = '{$to}' AND point_status = 'active'";
+						$res_to = $con->query($sql_to);
+						if ($res_to->num_rows > 0) {
+							$to_id = $res_to->fetch_assoc()['point_id'];
+						}
+
+						$sql_route = "SELECT * FROM routes WHERE mid_points LIKE '%{$from_id},%{$to_id},%' AND status = 'active'";
+						$res_route = $con->query($sql_route);
+						if ($res_route->num_rows > 0) {
+							while($row_route = $res_route->fetch_assoc()) {
+
+								$sql_bus = "SELECT * FROM bus WHERE bus_routes LIKE '%{$row_route['route_id']},%' AND bus_status = 'active'";
+								$res_bus = $con->query($sql_bus);
+								if ($res_bus->num_rows > 0) {
+									while($row_bus = $res_bus->fetch_assoc()) {
+										var_dump($row_bus);
+									}
+								}
+
+							}
+						} else {
+
+						}
+
+					?>
 						<div class="buses">
 							<div class="bus">
 								<div class="row">
 									<div class="col-md-4">
-										<table style="width:100%;">
-											<tr>
-												<td>
-													<i class="pe-7s-plane pe-sm"></i>
-												</td>
-												<td></td>
-											</tr>
-										</table>
+										
 									</div>
 									<div class="col-md-4">
-										<table style="width:100%;">
-											<tr>
-												<td>
-													<i class="pe-7s-clock pe-sm"></i>
-												</td>
-												<td></td>
-											</tr>
-										</table>
+										
 									</div>
 									<div class="col-md-4">
-										<table style="width:100%">
-											<tr>
-												<td>
-													<i class="pe-7s-pin pe-sm"></i>
-												</td>
-												<td></td>
-											</tr>
-										</table>
-									</div>
-								</div>
-							</div>
-							<div class="bus">
-								<div class="row">
-									<div class="col-md-4">
-										<table style="width:100%;">
-											<tr>
-												<td>
-													<i class="pe-7s-plane pe-sm"></i>
-												</td>
-												<td></td>
-											</tr>
-										</table>
-									</div>
-									<div class="col-md-4">
-										<table style="width:100%;">
-											<tr>
-												<td>
-													<i class="pe-7s-clock pe-sm"></i>
-												</td>
-												<td></td>
-											</tr>
-										</table>
-									</div>
-									<div class="col-md-4">
-										<table style="width:100%">
-											<tr>
-												<td>
-													<i class="pe-7s-pin pe-sm"></i>
-												</td>
-												<td></td>
-											</tr>
-										</table>
+										
 									</div>
 								</div>
 							</div>

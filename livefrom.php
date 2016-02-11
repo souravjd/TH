@@ -6,13 +6,13 @@
 
 	$q = strtolower($_REQUEST['q']);
 
-	$sql = "SELECT * FROM routes WHERE source LIKE '{$q}%' GROUP BY source";
+	$sql = "SELECT * FROM points WHERE point_name LIKE '{$q}%'";
 	$arr;
 
 	$res = $con->query($sql);
 	if ($res->num_rows > 0) {
 		while ($row = $res->fetch_assoc()) {
-			$arr[] = $row['source'];
+			$arr[] = $row['point_name'];
 		}
 	}
 
