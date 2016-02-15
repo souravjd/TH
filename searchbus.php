@@ -19,28 +19,7 @@
 		$row_chkmail = $res_chkmail->fetch_assoc();
 	}
 
-	if (isset($_POST['changename'])) {
-		$con->query($sql_users['changeName']."'".$_POST['name']."' WHERE MD5(`user_mail`) = '".$_SESSION['halt_user']."'");
-		header("location: ".$SITE['url']."account.php");
-	} elseif (isset($_POST['changepass'])) {
-		if (empty($_POST['newpass']) || empty($_POST['repass'] || empty($_POST['oldpass']))) {
-			header("location: ".$SITE['url']."account.php?change=password&error=empty");
-		} else {
-			if ($_POST['newpass'] == $_POST['repass']) {
-				$resPass = $con->query($sql_users['mailPasswordCheck']."'".$_SESSION['halt_user']."' AND `user_password` = '".$_POST['oldpass']."'");
-				$rowPass = $resPass->fetch_assoc();
-				if ($rowPass['chk'] == 1) {
-					$con->query($sql_users['changePassword']."'".$_POST['newpass']."' WHERE MD5(`user_mail`) = '".$_SESSION['halt_user']."'");
-					header("location: ".$SITE['url']."account.php");
-				} else {
-					header("location: ".$SITE['url']."account.php?change=password&error=wrong");
-				}
-			} else {
-				header("location: ".$SITE['url']."account.php?change=password&error=notmatch");
-			}
-		}
-	}
-
+	if (isset($_POST['sbus'])) {
 ?>
 <html>
 	<head>
@@ -109,7 +88,7 @@
 				<div class="h_right">
 					<ul class="menu" style="float:right;">
 						| <li><a href="index.php">Home</a></li> |
-						<li><a href="cancel.html">Print / Cancel Ticket</a></li> | |
+						<li><a href="cancel.php">Print / Cancel Ticket</a></li> | |
 
 						<?php
 							if ($sessionState == 1) {
@@ -142,7 +121,7 @@
 				<nav class="clearfix">
 						<ul>
 							<li><a href="index.php">Home</a></li> 
-							<li><a href="cencel.html">Cancel Ticket</a></li>
+							<li><a href="cancel.php">Cancel Ticket</a></li>
 
 							<?php
 								if ($sessionState == 1) {
@@ -191,10 +170,11 @@
 		<!-- /END ROUTE HEADER -->
 
 		<!-- START MAIN CONTENT -->
-		
+
 		<div class="main_bg">
 			<div class="wrap">
 				<div class="content-area">
+					<div class="buses">
 					<?php
 
 						$from = $_POST['from'];
@@ -224,31 +204,40 @@
 								$res_bus = $con->query($sql_bus);
 								if ($res_bus->num_rows > 0) {
 									while($row_bus = $res_bus->fetch_assoc()) {
-										var_dump($row_bus);
+										$bus_id = $row_bus['bus_id'];
+						?>
+							<div class="bus" data-toggle="collapse" data-target="#bus_<?php echo $bus_id; ?>"  aria-expanded="false">
+								<div class="row">
+									<div class="col-md-4 head">
+										<div class="row">
+											<div class="col-md-12"><?php echo $row_bus['bus_name']; ?></div>
+											<div class="col-md-12" style="font-weight:normal;font-size:75%;color:#444;"><?php echo $row_bus['bus_details'] ?></div>
+										</div>
+									</div>
+									<div class="col-md-4"></div>
+									<div class="col-md-4">Rs. <?php echo $row_bus['route_price']; ?></div>
+								</div>
+							</div>
+							<div class="bus-details collapse" style="display:none;"> id="bus_<?php echo $bus_id; ?>">
+								<div class="row">
+									<div class="col-md-6">Select Seats</div>
+									<div class="col-md-6"></div>
+								</div>
+							</div>
+						<?php
 									}
 								}
 
 							}
 						} else {
-
+					?>
+						<div class="bus text-center" style="padding:20px;">Sorry! No Bus Found...</div>
+					<?php
 						}
 
 					?>
-						<div class="buses">
-							<div class="bus">
-								<div class="row">
-									<div class="col-md-4">
-										
-									</div>
-									<div class="col-md-4">
-										
-									</div>
-									<div class="col-md-4">
-										
-									</div>
-								</div>
-							</div>
-						</div>
+					</div>
+							
 					</div>
 				</div>
 						
@@ -258,3 +247,9 @@
 		<?php include '_footer.php'; ?>
 	</body>
 </html>
+<?php
+	} else {
+		header("location: index.php");
+	}
+
+?>
