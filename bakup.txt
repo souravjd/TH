@@ -1,0 +1,33 @@
+<div class="main_bg">
+			<div class="wrap">
+				<div class="content-area">
+			<div class="row">
+					<div class="col-md-12"><b>PNR no.: </b><span class="value" ><?php echo $ticketdata['pnr_no']; ?></span></div>
+					<div class="col-md-4"><b>From : </b><span class="value" style="text-transform: uppercase" ><?php echo $ticketdata['from']; ?></span></div>
+					<div class="col-md-4"><b>To : </b><span class="value" style="text-transform: uppercase" ><?php echo $ticketdata['to']; ?></div>
+					<div class="col-md-4"><b>Date : </b><span class="value"><?php echo $ticketdata['travel_date']; ?></div>
+					<div class="col-md-6"><b>Bus name:  </b><span class="value"><?php echo $ticketdata['bus_name']; ?></div>
+					<div class="col-md-6"><b>Bus no. : </b><span class="value"><?php echo $ticketdata['bus_number']; ?></div>
+					<div class="col-md-4"><b>Bus Type: </b><span class="value"><?php echo $ticketdata['bus_details']; ?></div>
+					<div class="col-md-4"><b>Seats : </b><span class="value"><?php echo $ticketdata['seat_no'] ?></div>
+					<div class="col-md-4"><b>Total Fare : </b><span class="value"><?php echo $ticketdata['fare'] ?></div>
+					<div class="col-md-4"><b>Time : </b><span class="value"><?php echo $ticketdata['time'] ?></div>
+				</div>
+				<hr>
+			<h3>Passenger Details</h3>
+			<?php foreach($seatdata as $seatdetail){ ?>
+			<div class="col-md-4"><b>Name : </b><span class="value"><?php echo $seatdetail['name']; ?></div> 
+			<div class="col-md-4"><b>Age : </b><span class="value"><?php echo $seatdetail['age']; ?></div>
+			<div class="col-md-4"><b>Seat No. : </b><span class="value"><?php echo $seatdetail['seatnum']; ?></div>
+			<br/>
+			<?php }?>  
+
+			
+			<form method ="POST" action="controller_action.php">
+			<input type="hidden" name="cancelid" value="<?php echo $ticketdata['id'];?>">
+			<input type="hidden" name="page_action" value="canceltic">
+			<input type="submit" name="cancel" value="Cancel Ticket">
+			</form>
+		</div>
+			</div>
+		</div>

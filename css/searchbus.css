@@ -28,4 +28,8 @@
 width:93%;
 margin-bottom: 40px;
 }
-
+#headseat li 
+{
+display: inline-block;
+    float: left;
+    width: 17.33%; }

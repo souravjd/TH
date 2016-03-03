@@ -1,7 +1,6 @@
 <!DOCTYPE HTML>
 <?php
 
-	session_start();
 
 	include '_config.php';
 	include '_queries.php';
@@ -99,17 +98,21 @@
 			</div>
 		</div>
 		<!-- /END HEADER -->
-		<div class="main_bg" style="background:url('images/slider-bg.jpg') no-repeat fixed center top / cover;">
+		<div class="main_bg" style="background:url('images/slider-bg.jpg') no-repeat fixed center top cover;">
 			<!-- START MAIN CONTENT -->
 			<div class="wrap" style="padding:185px 0 40px 0">
 				<div class="sign-box">
 					<div class="head">Print / Cancel Ticket</div>
 					<div class="body text-center">
 						Please enter your PNR number. <br />
-						<form action="cancel.php" method="POST">
-							<input type="text" placeholder="PNR number" name="pnrno" style="display:block;width:100% !important;padding:6px;margin-top:12px;" />
-							<input type="submit" name="sub" value="View Ticket">
+						<form action="viewtickets.php" method="GET">
+							<input type="text" placeholder="PNR number" id="pnr" name="pnr" style="display:block;width:100% !important;padding:6px;margin-top:12px;" / required>
+							<input type="hidden" name="cancel" value=1>
+							<input type="hidden" name="page_action" value ="viewticket">
+							<input type="submit" value="View Ticket">
+							
 						</form>
+						
 					</div>
 				</div>
 			</div>

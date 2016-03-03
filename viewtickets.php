@@ -16,8 +16,9 @@
 		$res_chkmail = $con->query($sql_users['sessionFetch'] . "'".$_SESSION['halt_user']."'");
 		$row_chkmail = $res_chkmail->fetch_assoc();
 	}
-	?>	
-
+	$viewdata = $_REQUEST;
+	
+?>
 <html>
 	<head>
 		<title>Ticket Halt - Bus Search</title>
@@ -156,63 +157,79 @@
 		<!-- /END HEADER -->
 
 		<!-- ROUTE HEADER -->
-		<div class="route-head">
-			<div class="container">
-				<div class="row text-center">
-					<div class="col-md-4"><b>From : </b><span class="value"><?php echo $_SESSION['halt_cart']['bus_from'] ?></span></div>
-					<div class="col-md-4"><b>To : </b><span class="value"><?php echo $_SESSION['halt_cart']['bus_to'] ?></div>
-					<div class="col-md-4"><b>Date : </b><span class="value"><?php echo $_SESSION['halt_cart']['bus_on'] ?></div>
-					
-				</div>
-			</div>
-		</div>
+		
 		<!-- /END ROUTE HEADER -->
 
 		<!-- START MAIN CONTENT -->
-
+	<?php 
+		if(isset($viewdata['pnr']) ){
+		$sql = "SELECT * from `bookedseat` b LEFT JOIN `bus` bs ON b.bus_id = bs.bus_id LEFT JOIN `routes` r ON bs.bus_routes = r.route_id  where b.pnr_no = '".$viewdata['pnr']."' AND b.book_status = '1'";	
+	$sqlquery = $con->query($sql);
+	$ticketdata = $sqlquery->fetch_assoc();	
+	if($ticketdata['book_status'] == '1'){
+	$seats = explode(',',$ticketdata['seat_no']);
+	foreach($seats as $bukseat) {
+    $sql1 = "SELECT * from passengerlist where id = '".$bukseat."'"; 
+	$sqlquery = $con->query($sql1);
+	$seatdata[] = $sqlquery->fetch_assoc();
+	}
+	
+	foreach($seatdata as $seatval){
+	$seatno[]	 =  $seatval['seatnum'];
+	}
+	$seats = implode(",",$seatno);
+	?>
 		<div class="main_bg">
 			<div class="wrap">
 				<div class="content-area">
+			<div class="row">
 			
-	<?php 
-	$seats = $_SESSION['seat_booked']['seat_no'];?>
-	
-	<form method="POST" action="controller_action.php" id="pdetail">
-	<div class="col-md-8">
-	<h3 style="text-decoration:underline;text-align:center">Passenger Details</h3><br />
-	<?php foreach($seats as $var){ 	?>
-	
-	<div class="col-md-3">Seat No. <input type="text" name="seat[]" class="pseat" value="<?php echo $var;?>" readonly style="border=0px"></span></div>
-	<div class="col-md-4">Name <input type="text" name="pname[]" class="pname" placeholder ="Name" required></div>
-	<div class="col-md-3">Gender  <input type="checkbox" name="pgender[]" class="pgender" value="Male"> M <input type="checkbox" name="pgender[]" value="Female"> F</div>	 
-	<div class="col-md-2">Age <input type="text" name="page[]" class="page" placeholder="Age" required></div>
-	 <div class="space"></div>
-	<?php } ?>
-	</div>
-	<div id="busdet" class="col-md-4">
-	<h3 style="text-decoration:underline">Bus Details</h3><br />
-	<span style="text-transform: uppercase;"><?php echo $_SESSION['halt_cart']['bus_from'] ?></span> to <span style="text-transform: uppercase;"><?php echo $_SESSION['halt_cart']['bus_to'] ;?></span><br>
-	Bus Name : <?php echo $_SESSION['halt_cart']['bus_name'];?><br />
-	Bus Number : <?php echo $_SESSION['halt_cart']["businfo"]['bus_number'];?><br />
-	Bus Detail : <?php echo $_SESSION['halt_cart']["businfo"]['bus_details'];?><br />
-	Seats : <?php  foreach($seats as $var){ echo $var.', ';}?><br />
-	</div>
-	<div class="col-md-8">
-	<div class="col-md-12">
-	Mobile <input type="text" name="mobile" placeholder="Mobile No." required><br /><span style="font-size:12px;    margin-left: 78px;"> (SMS will be sent on this number)</span> <br /><br /></div>
-	<div class="col-md-4"></div><div class="col-md-8"><span class="agree"><input type="checkbox" required> I agree with Terms & Conditions</span><br /><br /></div>
-	<input type="hidden" name="page_action" value="passenger">
-	<div class="col-md-12" height="30px"></div>
-	<div class="col-md-4"></div><div class="col-md-8"><input type="submit" id="procedtopay" name="psubmit" value="Proceed to Pay">
-	<input type="button" id="canceltopay" value= "Cancel"></div></div>
-	
-</form>	
-<div id ="paymentval" class="col-md-4">
-	<h3 style="text-decoration:underline">Payment Summary</h3>
-	Base Fare :  <?php echo $_SESSION['halt_cart']["businfo"]['route_price'];?><br />
-	Total Fare : <?php echo count($seats)* $_SESSION['halt_cart']["businfo"]['route_price'];?>
-	</div>
+				<div class="col-md-8"><span style="text-transform: uppercase" ><?php echo $ticketdata['from']; ?> -------> <span style="text-transform: uppercase" ><?php echo $ticketdata['to']; ?> </div><div class="col-md-4" >PNR Number</div> 
+				<div class="col-md-8"><?php echo $ticketdata['travel_date']; ?></div><div class="col-md-4"><?php echo $ticketdata['pnr_no']; ?></div>
+				<div class="col-md-12" style="border-bottom:1px solid black;margin-bottom:30px"></div>
+				</div>
+				
+			<div class="row">
+				<div class="col-md-3"></div><div class="col-md-9"><b>Bus name :  </b><span class="value"><?php echo $ticketdata['bus_name']; ?></div>
+					<div class="col-md-3"></div><div class="col-md-9" style="margin:3px 0px"><b>Bus no. : </b><span class="value"><?php echo $ticketdata['bus_number']; ?></span></div>
+					<div class="col-md-3"></div><div class="col-md-9" style="margin:3px 0px"><b>Bus Type: </b><span class="value"><?php echo $ticketdata['bus_details']; ?></span></div>
+					<div class="col-md-3"></div><div class="col-md-9" style="margin:3px 0px"><b>Seats : </b><span class="value"><?php echo $seats; ?></span></div>
+					<div class="col-md-3"></div><div class="col-md-9" style="margin:3px 0px"><b>Boarding Point : </b><span class="value"></span></div>
+					<div class="col-md-3"></div><div class="col-md-9" style="margin:3px 0px"><b>Departure Time : </b><span class="value"><?php echo date("H:i A", strtotime($ticketdata['time'])); ?></div>
+					<div class="col-md-3"></div><div class="col-md-9" style="margin-bottom:30px"><b>Reporting Time : </b><span class="value"></span></div>
+					<div class="col-md-12" style="border-bottom:1px solid black;margin-bottom:30px"></div>
+			</div>		
+			
+			<div class="row">
+				
+			<div class="col-md-12" style="margin-bottom:7px"><h3>Passenger Details</h3></div>
+			<?php foreach($seatdata as $seatdetail){ ?>
+			<div class="col-md-4"><b>Name : </b><span class="value"><?php echo $seatdetail['name']; ?></div> 
+			<div class="col-md-4"><b>Age : </b><span class="value"><?php echo $seatdetail['age']; ?></div>
+			<div class="col-md-4"><b>Seat No. : </b><span class="value"><?php echo $seatdetail['seatnum']; ?></div>
+			<br/>
+			<?php }?>  
+			<div class="col-md-12" style="border-bottom:1px solid black;margin-bottom:30px"></div>
+			</div>
+			<div class="col-md-7"></div><div class="col-md-5"><b>Total Fare : </b><span class="value"><?php echo $ticketdata['fare'] ?></div>
+			
+			<?php if(isset($_REQUEST['cancel']) && $_REQUEST['cancel'] == 1) { ?>
+			<div class="row">
+			<form method ="POST" action="controller_action.php">
+			<input type="hidden" name="cancelid" value="<?php echo $ticketdata['id'];?>">
+			<input type="hidden" name="page_action" value="canceltic">
+			<div class="col-md-3"></div><div class="col-md-9"><input type="submit" id="cancelticket" name="cancel" value="Cancel Ticket"></div>
+			</form>
+			</div>
+			<?php } ?>
+			
 		</div>
+			</div>
+		</div>
+		<?php } else {
+		echo " No Ticket Found";
+		}
+		} ?>
 		<!-- /END MAIN CONTENT -->	
 		<?php include '_footer.php'; ?>
 	</body>

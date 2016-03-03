@@ -17,9 +17,8 @@
 		$row_chkmail = $res_chkmail->fetch_assoc();
 	}
 
-	if (isset($_POST['sbus'])) {
+	if (isset($_SESSION['halt_cart']['bus_from'])) {
 	
-	$_SESSION['halt_cart'] = @$_POST;
 	
 ?>
 <html>
@@ -162,9 +161,9 @@
 		<div class="route-head">
 			<div class="container">
 				<div class="row text-center">
-					<div class="col-md-4"><b>From : </b><span class="value"><?php echo $_POST['from'] ?></span></div>
-					<div class="col-md-4"><b>To : </b><span class="value"><?php echo $_POST['to'] ?></div>
-					<div class="col-md-4"><b>Date : </b><span class="value"><?php echo $_POST['on'] ?></div>
+					<div class="col-md-4"><b>From : </b><span class="value"><?php echo $_SESSION['halt_cart']['bus_from'] ?></span></div>
+					<div class="col-md-4"><b>To : </b><span class="value"><?php echo $_SESSION['halt_cart']['bus_to'] ?></div>
+					<div class="col-md-4"><b>Date : </b><span class="value"><?php echo $_SESSION['halt_cart']['bus_on'] ?></div>
 					
 				</div>
 			</div>
@@ -179,9 +178,9 @@
 					<div class="buses">
 					<?php
 						$params = @$_SESSION['halt_cart'];
-						$from = $params['from'];
-						$to = $params['to'];
-						$on = $params['on'];
+						$from = $params['bus_from'];
+						$to = $params['bus_to'];
+						$on = $params['bus_on'];
 						$from_id = null;
 						$to_id = null;
 

@@ -1,0 +1,42 @@
+#source {
+    text-transform: uppercase;}
+	
+#change {
+margin-left: 21.33%;}
+
+#pdetail input {
+margin-left:10px; }
+#pdetail .pseat {
+    width: 23%;
+    text-align: center;}	
+	#pdetail .pname{
+	width: 68%;}
+	#pdetail .page {
+	width: 40%;}
+	
+#busdet {
+padding-left:50px;
+}
+#paymentval {
+	padding-left:50px;
+	margin-top:40px;
+	    margin-bottom: 100px;
+	}
+#pdetail .space{
+	margin-bottom:	15px;
+	}
+	
+#procedtopay {
+    width: 40%;
+    height: 38px;
+	font-size :18px;
+	}	
+#canceltopay {
+	 width: 18%;
+    height: 38px;
+	font-size :18px;}
+#cancelticket {
+width: 18%;
+    height: 38px;
+    font-size: 18px;}	
+	

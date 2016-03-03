@@ -163,9 +163,9 @@
 		<div class="route-head">
 			<div class="container3">
 				<div class="text-center">
-					<div class="col-md-4"><b>From : </b><span class="value"><?php echo $params['from'] ?></span></div>
-					<div class="col-md-4"><b>To : </b><span class="value"><?php echo $params['to'] ?></div>
-					<div class="col-md-4"><b>Date : </b><span class="value"><?php echo $params['on'] ?></div>
+					<div class="col-md-4"><b>From : </b><span class="value"><?php echo $params['bus_from'] ?></span></div>
+					<div class="col-md-4"><b>To : </b><span class="value"><?php echo $params['bus_to'] ?></div>
+					<div class="col-md-4"><b>Date : </b><span class="value"><?php echo $params['bus_on'] ?></div>
 					<div class="col-md-4"><b>Bus Name : </b><span class="value"><?php echo $params['bus_name']; ?></div>
 					<?php $bustim = $params['bus_time'] ;?>
 					<div class="col-md-4"><b>Bus Time : </b><span class="value"><?php echo date("H:i A", strtotime($bustim)); ?></div>
@@ -192,9 +192,23 @@
 					<button class="checkout-button" id="click_checkout">Checkout &raquo;</button>
 					
 					<div id="legend"></div>
+					<br>
+					<br>
+					<div id="boardingpoint">
+					<form
+					<label>Boarding Points <select name="boardpoint">
+							<option value="Point1">Point 1</option>
+							<option value="Point2">Point 2</option>
+							<option value="Point3">Point 3</option>
+							</select>
+							</form>
+							</div>
 				</div>
+				
 			</div>
+			
 		</div>
+		
 		<script>
 			var firstSeatLabel = 1;
 		
@@ -290,7 +304,8 @@
 				});
 
 				//let's pretend some seats have already been booked
-				sc.get(['1_2', '4_1', '7_1', '7_2']).status('unavailable');
+					<?php foreach($_SESSION['halt_cart']["seatlocation"] as $seatloc){?>
+				sc.get(['<?php echo $seatloc;?>',]).status('unavailable');<?php }?>
 		
 		
 		$("#click_checkout").click( function() {
@@ -308,7 +323,7 @@
 		
 		//console.log(seatNo);
 		
-						var formData = {'page_action': 'bus_booking', 'user_id': 1, 'bus_id': <?php echo (int)$params["businfo"]["bus_id"];?>, 'seat_location': location, 'seat_no':seatNo, 'fare': '<?php echo $params["businfo"]["route_price"]; ?>', 'travel_date': '<?php echo $params["on"];?>', 'book_status':1 };
+						var formData = {'page_action': 'bus_booking', 'user_id': 1, 'bus_id': <?php echo (int)$params["businfo"]["bus_id"];?>, 'seat_location': location, 'seat_no':seatNo, 'fare': '<?php echo $params["businfo"]["route_price"]; ?>', 'travel_date': '<?php echo $params["bus_on"];?>', 'book_status':1 };
 				var url = 'controller_action.php';
 				
 				$.ajax({
@@ -319,8 +334,7 @@
 				{
 					
 					if(data == "booked"){
-						alert("Seat confirmed");
-						window.location = "index.php";
+						window.location = "passengerdetail.php";
 					}
 						
 				

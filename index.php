@@ -29,6 +29,7 @@
 		<link rel="stylesheet" type="text/css" href="css/datepicker.css">
 		<link rel="stylesheet" type="text/css" href="css/main.css">
 		<link rel="stylesheet" type="text/css" href="css/style.css" media="all" />
+		<link rel="stylesheet" type="text/css" href="css/style-dev.css" media="all" />
 		<link rel="stylesheet" type="text/css" href="FontAwesome/css/font-awesome.css">
 
 		<script type="text/javascript" src="js/live.js"></script>
@@ -66,6 +67,18 @@
 		        		}
 		    		});
 				});
+				
+				$(document).ready(function (){
+
+    $("#change").on('click',function(){
+        var pickup = $('#txt-pickup').val();
+        $('#txt-pickup').val($('#txt-destination').val());
+        $('#txt-destination').val(pickup);
+
+
+    });
+
+});
 		</script>
 		<!-- /END NAV SCRIPT -->
 
@@ -160,22 +173,24 @@
 							<p>India's largest real time tickets booking system</p>
 						</div>
 						<div class="h-body">
-							<form method="post" action="searchbus.php">
+							<form method="post" action="controller_action.php">
 							<div class="cell">
 								<h5>From :</h5>
-								<input type="text" name="from" list="source" onkeyup="source(this.value)" required placeholder="Select City">
+								<input type="text" name="from" list="source" onkeyup="source(this.value)" id="txt-pickup" required placeholder="Select City">
 								<datalist id="source"></datalist>
 							</div><div class="cell">
 								<h5>To :</h5>
-								<input type="text" name="to" list="destination" onkeyup="destination(this.value)" required placeholder="Select City">
+								<input type="text" name="to" list="destination" onkeyup="destination(this.value)" id="txt-destination" required placeholder="Select City">
 								<datalist id="destination"></datalist>
 							</div><div class="cell book_date">
 								<h5>Date :</h5>
 								<input type="text" name="on" id="datepicker" required placeholder="DD/MM/YYYY">
 							</div><div class="cell">
 								<h5></h5>
+								<input type="hidden" name="page_action" value="sbus">
 								<input type="submit" name="sbus" value="Search Bus">
 							</div>
+							<input type="image" src="images/arrowswap.png" id="change" >
 							</form>
 						</div>
 					</div>
